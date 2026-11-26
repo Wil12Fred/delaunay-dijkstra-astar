@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: sudo apt-get update && sudo apt-get install -y freeglut3-dev xvfb
+      - run: sudo apt-get update && sudo apt-get install -y freeglut3-dev xvfb imagemagick
       - run: make
       # unit tests + the real program in both modes (OpenGL under xvfb-run)
       - run: make test
