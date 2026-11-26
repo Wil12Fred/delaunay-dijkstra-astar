@@ -1,6 +1,12 @@
+#ifdef __APPLE__
 #include <GLUT/glut.h>
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
+#else
+#include <GL/glut.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
 #include "grafo.h"
 #include "delaunay.h"
 #include "aest.h"
@@ -58,27 +64,27 @@ ofstream copiar5("comprobar2.txt",ios::out);
 
 
 void keyPress(int key,int x,int y){
-    if(key==27)
-          exit(0);
-    if (key == GLUT_KEY_F1)
-            rotate_x += .5;
-            cout<<"rotate_x  "<<rotate_x<<endl;
-        if (key == GLUT_KEY_F2)
-            rotate_x -= .5;
-            cout<<"rotate_x  "<<rotate_x<<endl;
-    if (key== GLUT_KEY_RIGHT)
-            eje_x += 10.5;
-            cout<<"eje_x  "<<eje_x<<endl;
-    if (key== GLUT_KEY_LEFT)
-            eje_x -= 10.5;
-            cout<<"eje_x  "<<eje_x<<endl;
-    if (key== GLUT_KEY_UP)
-            eje_y += 10.5;
-            cout<<"eje_y  "<<eje_y<<endl;
-    if (key== GLUT_KEY_DOWN)
-            eje_y -= 10.5;
-            cout<<"eje_y  "<<eje_y<<endl;
-    glutPostRedisplay();
+    if(key==27)
+          exit(0);
+    if (key == GLUT_KEY_F1)
+            rotate_x += .5;
+            cout<<"rotate_x  "<<rotate_x<<endl;
+        if (key == GLUT_KEY_F2)
+            rotate_x -= .5;
+            cout<<"rotate_x  "<<rotate_x<<endl;
+    if (key== GLUT_KEY_RIGHT)
+            eje_x += 10.5;
+            cout<<"eje_x  "<<eje_x<<endl;
+    if (key== GLUT_KEY_LEFT)
+            eje_x -= 10.5;
+            cout<<"eje_x  "<<eje_x<<endl;
+    if (key== GLUT_KEY_UP)
+            eje_y += 10.5;
+            cout<<"eje_y  "<<eje_y<<endl;
+    if (key== GLUT_KEY_DOWN)
+            eje_y -= 10.5;
+            cout<<"eje_y  "<<eje_y<<endl;
+    glutPostRedisplay();
 
 }
 
@@ -243,8 +249,8 @@ void drawScene(){
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
   glTranslated(eje_x,eje_y,0);
-  glScalef( rotate_x,rotate_x,1.0f );
-  glRotatef(  rotate_by_key,-1.0f, 1.5f, -5.0f );
+  glScalef( rotate_x,rotate_x,1.0f );
+  glRotatef(  rotate_by_key,-1.0f, 1.5f, -5.0f );
   int i;
   string val1,val2,val3,val4;
   glColor3f(1.0f,1.0f,0);
@@ -285,12 +291,12 @@ void init_GL(void){
 }
 
 void handleResize(int w, int h) {
-    //Tell OpenGL how to convert from coordinates to pixel values
-    glViewport(0, 0, w, h);
-    glMatrixMode(GL_PROJECTION); //Switch to setting the camera perspective
-    //Set the camera perspective
-    glLoadIdentity(); //Reset the camera
-    glOrtho(izq, der, aba, arr, -50, 50);
+    //Tell OpenGL how to convert from coordinates to pixel values
+    glViewport(0, 0, w, h);
+    glMatrixMode(GL_PROJECTION); //Switch to setting the camera perspective
+    //Set the camera perspective
+    glLoadIdentity(); //Reset the camera
+    glOrtho(izq, der, aba, arr, -50, 50);
     glMatrixMode(GL_MODELVIEW);
 }
 
