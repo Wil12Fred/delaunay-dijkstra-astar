@@ -1,0 +1,10 @@
+# build output
+*.o
+Prueba/main
+Prueba/mapa
+Prueba/trans
+# macOS / Xcode
+.DS_Store
+xcuserdata/
+build/
+DerivedData/
