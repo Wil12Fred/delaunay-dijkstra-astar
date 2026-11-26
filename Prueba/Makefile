@@ -1,19 +1,21 @@
-CC = g++
-CFLAGS= -std=c++11 -Wall -pedantic -O2 -framework OpenGl -framework GLUT -lobjc
+CXX      ?= g++
+CXXFLAGS ?= -std=c++11 -Wall -O2
 
-.SUFFIXES: .cc .o
+ifeq ($(shell uname),Darwin)
+LDLIBS := -framework OpenGL -framework GLUT -lobjc
+else
+LDLIBS := -lglut -lGLU -lGL
+endif
 
-.cc.o:
-	$(CC) -c $(CFLAGS) $<
+all: main trans
 
-all: main
+main: main.cc aest.h delaunay.h grafo.h
+	$(CXX) $(CXXFLAGS) -o $@ main.cc $(LDLIBS)
 
-main: main.o
-	$(CC) -o main $(CFLAGS) main.o
-
-main.o: main.cc
+trans: Trans.cpp
+	$(CXX) $(CXXFLAGS) -o $@ Trans.cpp
 
 clean:
-	rm -f *.o
-	rm -f *.s
-	rm -f main
+	rm -f *.o *.s main trans
+
+.PHONY: all clean
