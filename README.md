@@ -1,4 +1,6 @@
-# Xcode-OpenGL: Delaunay road map, Dijkstra and A*
+# delaunay-dijkstra-astar
+
+> Delaunay road map, Dijkstra and A*
 
 A university exercise in graph algorithms, from 2016 (updated 2018). Written on macOS with
 Xcode, it now builds on Linux too. The program in `Prueba/` has two modes:
