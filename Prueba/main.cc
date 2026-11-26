@@ -57,33 +57,35 @@ vector <pair<double,double> > lines;
 vector <pair<pair<double,double>,pair<double,double> > > mapa;
 
 ifstream leer("coord.txt", ios::in);
+// copiar3 crea aristas.txt antes de que leer2 lo abra: si leer2 lo abre primero
+// y el archivo no existe, drawScene() se queda leyendo para siempre
+ofstream copiar3("aristas.txt",ios::out);
 ifstream leer2("aristas.txt", ios::in);
 ofstream copiar2("camino.txt",ios::out);
-ofstream copiar3("aristas.txt",ios::out);
 ofstream copiar5("comprobar2.txt",ios::out);
 
 
 void keyPress(int key,int x,int y){
     if(key==27)
           exit(0);
-    if (key == GLUT_KEY_F1)
+    if (key == GLUT_KEY_F1){
             rotate_x += .5;
-            cout<<"rotate_x  "<<rotate_x<<endl;
-        if (key == GLUT_KEY_F2)
+            cout<<"rotate_x  "<<rotate_x<<endl;}
+        if (key == GLUT_KEY_F2){
             rotate_x -= .5;
-            cout<<"rotate_x  "<<rotate_x<<endl;
-    if (key== GLUT_KEY_RIGHT)
+            cout<<"rotate_x  "<<rotate_x<<endl;}
+    if (key== GLUT_KEY_RIGHT){
             eje_x += 10.5;
-            cout<<"eje_x  "<<eje_x<<endl;
-    if (key== GLUT_KEY_LEFT)
+            cout<<"eje_x  "<<eje_x<<endl;}
+    if (key== GLUT_KEY_LEFT){
             eje_x -= 10.5;
-            cout<<"eje_x  "<<eje_x<<endl;
-    if (key== GLUT_KEY_UP)
+            cout<<"eje_x  "<<eje_x<<endl;}
+    if (key== GLUT_KEY_UP){
             eje_y += 10.5;
-            cout<<"eje_y  "<<eje_y<<endl;
-    if (key== GLUT_KEY_DOWN)
+            cout<<"eje_y  "<<eje_y<<endl;}
+    if (key== GLUT_KEY_DOWN){
             eje_y -= 10.5;
-            cout<<"eje_y  "<<eje_y<<endl;
+            cout<<"eje_y  "<<eje_y<<endl;}
     glutPostRedisplay();
 
 }
@@ -469,6 +471,7 @@ int main(int argc, char **argv)
       cout << lines[k].first << " " << lines[k].second << endl;
       k+=1;
     }
+    copiar3.flush(); // drawScene() lee lo escrito en aristas.txt
     glutInit(&argc,argv);
     glutInitDisplayMode( GLUT_RGB | GLUT_DOUBLE );
     glutInitWindowSize(SIZEX, SIZEY); 
