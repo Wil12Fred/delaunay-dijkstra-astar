@@ -15,7 +15,20 @@ main: main.cc aest.h delaunay.h grafo.h
 trans: Trans.cpp
 	$(CXX) $(CXXFLAGS) -o $@ Trans.cpp
 
-clean:
-	rm -f *.o *.s main trans
+tests/test_algorithms: tests/test_algorithms.cc main.cc aest.h delaunay.h grafo.h
+	$(CXX) $(CXXFLAGS) -o $@ tests/test_algorithms.cc $(LDLIBS)
 
-.PHONY: all clean
+# The program and the tests write aristas.txt, camino.txt and comprobar*.txt
+# in their working directory, so the unit tests run in tests/run/ and the
+# program in a scratch copy. The GUI run always uses its own xvfb-run display.
+test: main tests/test_algorithms
+	mkdir -p tests/run
+	cd tests/run && ../test_algorithms > log.txt || { cat log.txt; exit 1; }
+	tail -1 tests/run/log.txt
+	./tests/run_program.sh
+
+clean:
+	rm -f *.o *.s main trans tests/test_algorithms
+	rm -f tests/run/*.txt
+
+.PHONY: all test clean
