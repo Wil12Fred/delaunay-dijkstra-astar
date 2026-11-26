@@ -479,22 +479,22 @@ void Astar(nodito* a[alto][largo], pair<int, int> start, pair<int, int> finale, 
             if(o.substr(m,1) == "x")
             {
               cout << CYAN ;
-                printf("%c", 'A');
+                cout << 'A';
             }
             else if(o.substr(m,1) == "B")
             {
               cout << WHITE ;
-                printf("%c", 'B');
+                cout << 'B';
             }
             else if(o.substr(m,1) == "F")
             {
               cout << RED; 
-                printf("%c", 'F');
+                cout << 'F';
             }
             else
             {
               cout << BOLDBLUE ;
-                printf("%c", o[m]);
+                cout << o[m];
             }
         }
         //cout<<o<<endl;
