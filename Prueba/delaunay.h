@@ -30,7 +30,7 @@ vector<triple> delaunayTriangulation(vector<double>& x, vector<double>& y) {
         double zn = (x[j]-x[i])*(y[k]-y[i]) - (x[k]-x[i])*(y[j]-y[i]);
         bool flag = zn < 0;
         for (int m = 0; flag && m < n; m++)
-          flag = flag && ((x[m]-x[i])*xn + (y[m]-y[i])*yn + (z[m]-z[i])*zn <= 0);
+          flag = flag && (m == i || m == j || m == k || (x[m]-x[i])*xn + (y[m]-y[i])*yn + (z[m]-z[i])*zn <= 0);
         if (flag)
           ret.push_back(triple(i, j, k));
       }
