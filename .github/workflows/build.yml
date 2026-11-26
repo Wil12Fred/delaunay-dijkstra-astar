@@ -1,0 +1,13 @@
+name: build
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y freeglut3-dev
+      - run: make -C Prueba
+      # the A* terminal mode is headless; run it in a copy so the tracked .txt files stay intact
+      - run: |
+          cp -r Prueba /tmp/run && cd /tmp/run
+          printf '300\n1\n0 0\n9 9\n' | ./main | head -40
