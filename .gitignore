@@ -8,3 +8,10 @@ Prueba/trans
 xcuserdata/
 build/
 DerivedData/
+Prueba/tests/test_algorithms
+Prueba/tests/run/
+# written by ./main on every run
+Prueba/aristas.txt
+Prueba/camino.txt
+Prueba/comprobar1.txt
+Prueba/comprobar2.txt
